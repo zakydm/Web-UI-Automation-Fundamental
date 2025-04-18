@@ -1,0 +1,100 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-04-18T02:32:40.133Z",
+    "end": "2025-04-18T02:32:45.388Z",
+    "duration": 5255,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "eebb0001-208e-454e-9141-dac5dc2e5216",
+      "title": "",
+      "fullFile": "C:\\Users\\adlan walid\\Documents\\testmocha\\tests\\sesi-9\\test-sauce.js",
+      "file": "\\tests\\sesi-9\\test-sauce.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "fb84ed57-f073-434c-851f-9abc7bdeecd2",
+          "title": "Google Search Test",
+          "fullFile": "C:\\Users\\adlan walid\\Documents\\testmocha\\tests\\sesi-9\\test-sauce.js",
+          "file": "\\tests\\sesi-9\\test-sauce.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Visit Saucedemo dan cek page title",
+              "fullTitle": "Google Search Test Visit Saucedemo dan cek page title",
+              "timedOut": false,
+              "duration": 5250,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "driver = await new Builder().forBrowser('chrome').build();\nawait driver.get('https://www.saucedemo.com');\nconst title = await driver.getTitle();\n\nassert.strictEqual(title, 'Swag Labs');\nlet inputUsername = await driver.findElement(By.css('[data-test=\"username\"]'))\nlet inputPassword = await driver.findElement(By.xpath('//*[@data-test=\"password\"]'))\nlet buttonLoggin = await driver.findElement(By.className('submit-button btn_action'))\nawait inputUsername.sendKeys('standard_user')\nawait inputPassword.sendKeys('secret_sauce')\nawait buttonLoggin.click()\nlet buttonCart = await driver.wait(\n    until.elementLocated(By.xpath('//*[@data-test=\"shopping-cart-link\"]')),\n    3000\n);\nlet buttonSort = await driver.wait(\nuntil.elementLocated(By.css('[data-test=\"product-sort-container\"]')),\n3000\n);\n// 3. Klik dropdown sort\nawait buttonSort.click();\n// 4. Pilih opsi Z to A (misal option-nya ada value \"za\")\nlet optionZA = await driver.wait(\nuntil.elementLocated(By.css('option[value=\"za\"]')),\n2000\n);\nawait optionZA.click();\n// Ambil semua elemen nama produk\nlet productNames = await driver.findElements(By.css('.inventory_item_name'));\n// Ambil teks dari tiap elemen\nlet names = [];\nfor (let el of productNames) {\nnames.push(await el.getText());\n}\n// Bandingkan dengan versi terurut Z ke A\nlet expected = [...names].sort().reverse();\nconsole.log(\nJSON.stringify(names) === JSON.stringify(expected)\n    ? \"✅ Produk sudah terurut dari Z ke A.\"\n    : \"❌ Urutan produk belum sesuai Z ke A.\"\n);\n    await buttonCart.isDisplayed()\n    await driver.sleep(3000);\n    await driver.quit();",
+              "err": {},
+              "uuid": "675e319b-43b4-4c2d-8faa-71d26bc1da92",
+              "parentUUID": "fb84ed57-f073-434c-851f-9abc7bdeecd2",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "675e319b-43b4-4c2d-8faa-71d26bc1da92"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 5250,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 60000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 60000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "10.8.2"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": null,
+      "version": "6.2.0"
+    }
+  }
+}
